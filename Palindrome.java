@@ -3,10 +3,11 @@
 // - instead of reversing the whole number, reverse only half the digits and compare.
 // - example for 1221, reverse last half->12, compare it with the first half->12
 // - this avoid overflow for very large numbers and is slightly faster
-
+import java.util.Scanner;
 public class Palindrome {
     public static void main(String[] args) {
-        int num = 12321;
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
         if (isPalindrome(num)) {
             System.out.println(num + " is a palindrome.");
         } else {
