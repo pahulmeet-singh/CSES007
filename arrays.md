@@ -49,8 +49,26 @@ takeuforward.org
 ---
 29 june
 - 1967 Number of Strings That Appear as Substrings in Word(streak🔥)
-
+- linear search, binary search
+- gcd, prime, armstrong, palindrome
 1. high potential >10L
 2. core engineering 6-10L
 3. foundation bracket <6L
+---
 
+30 june
+- sieve of eratosthenes
+- 204 Count Primes
+- 36 Valid Sudoku
+- 1358 Number of Substrings Containing All Three Characters(🔥)
+- 2523 Closest Prime Numbers in Range
+- bit manipulation?
+- 540 Single Element in a Sorted Array
+- 12402097 saggu
+- swap 2 numbers with XOR
+- odd or even with XOR
+- Kth bit check (bit is set or unset)
+- counting set bits in a number
+- maximum and value of 2 numbers
+- counting longest trails of 1s in a number
+- missing number(XOR trick)
