@@ -9,5 +9,28 @@ XOR Trick for missing numbers:
     - 
 */
 public class missingNumber {
-    
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 5, 6}; // Example array with missing number 3
+        int n = 6; // The range of numbers is from 1 to n
+        int missingNumber = findMissingNumber(arr, n);
+        System.out.println("The missing number is: " + missingNumber);
+    }
+
+    public static int findMissingNumber(int[] arr, int n) {
+        int xorAll = 0;
+        int xorArr = 0;
+
+        // XOR all numbers from 1 to n
+        for (int i = 1; i <= n; i++) {
+            xorAll ^= i;
+        }
+
+        // XOR all elements in the array
+        for (int num : arr) {
+            xorArr ^= num;
+        }
+
+        // The missing number is the XOR of the two results
+        return xorAll ^ xorArr;
+    }
 }
