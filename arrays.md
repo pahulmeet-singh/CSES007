@@ -64,7 +64,7 @@ takeuforward.org
 - 2523 Closest Prime Numbers in Range
 - bit manipulation?
 - 540 Single Element in a Sorted Array
-- 12402097 saggu
+- 12402907 sagu
 - swap 2 numbers with XOR
 - odd or even with XOR
 - Kth bit check (bit is set or unset)
@@ -72,3 +72,18 @@ takeuforward.org
 - maximum and value of 2 numbers
 - counting longest trails of 1s in a number
 - missing number(XOR trick)
+---
+1 July
+- Gray Code(reflected binary codes)
+- range of gray codes
+- bubble sort
+- selection sort
+- insertion sort
+- find out the largest possible digit that can be made using array elements
+    > given array:[3,30,34,5,9]
+    largest possible number: 9534330
+- 75 sort colors
+- 215 kth largest element in an array
+- 1122 relative sort array
+- 2037 min no of moves to seat everyone
+- Asympotic analysis
