@@ -12,7 +12,7 @@ public class grayCode {
     public static int binaryToGray(int n) {
         return n ^ (n >> 1); // XOR the number with itself right-shifted by 1
     }
-    public static int grayToBinary(int gray) {
+    public static int grayToBinary(int gray) {//to print it in binary form we need to convert it back to binary
         int binary = 0;
         for (; gray > 0; gray >>= 1) {
             binary ^= gray; // XOR the current gray value with the accumulated binary value
