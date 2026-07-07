@@ -119,3 +119,30 @@ takeuforward.org
 3 July
 
 - 3620 Network Recovery Pathways🔥
+- rotated sorted array(LC: 33+81+153)
+- 33 search in a rotated sorted array
+- 81 search in a rotated sorted array II
+- 153 Find Minimum in Rotated Sorted Array
+- 88 merge sorted array
+- 34 find first and last position of element in a sorted array
+- 2D matrix search
+- 74 search a 2D matrix
+
+---
+6 July
+
+- binary search (flattened matrix)
+- 15 3sum
+- relative sort matrix problem
+- aggressive cow problem
+
+<!-- 
+- two sum sorted
+- merge sorted array
+- sort colors -->
+
+---
+7 July
+
+- 11 container with most water
+- 42 trapping rain water
