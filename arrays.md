@@ -39,7 +39,7 @@ Q. diff between continuous and contiguous
 - ? bit manipulation
 - ? sorting techniques
 
-- ######  Anagrams
+- ###### Anagrams
 
 - 242 valid anagrams
 - gfg longest common suffix or substring
@@ -146,3 +146,10 @@ takeuforward.org
 
 - 11 container with most water
 - 42 trapping rain water
+- 3754 Concatenate Non-Zero Digits and Multiply by Sum I🔥
+
+---
+8 July
+
+- 3756 Concatenate Non-Zero Digits and Multiply by Sum II🔥
+- 611 Valid Triangle Number
