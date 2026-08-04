@@ -10,9 +10,8 @@ Q. diff between continuous and contiguous
 - 523
 - 643 Maximum Average Subarray I✅
 - 813
-- 53
-- 152
-- 644
+- 53 maximum subarray
+- 152 Maximum Product Subarray
 - avg, min, max
 - 2nd max
 - 26 remove duplicates
@@ -55,7 +54,7 @@ takeuforward.org
 - linear search, binary search
 - gcd, prime, armstrong, palindrome
 
-1. high potential >10L
+1. high potential >10L1
 2. core engineering 6-10L
 3. foundation bracket <6L
 
@@ -153,3 +152,161 @@ takeuforward.org
 
 - 3756 Concatenate Non-Zero Digits and Multiply by Sum II🔥
 - 611 Valid Triangle Number
+- 283 move zeroes
+
+---
+13 July
+
+- 19 removing nth node from the end of the list
+- 876 middle of LL
+- 1721 swapping nodes in a linked list
+- reversing LL _(206,92,25)_
+- 234 palindrome LL
+
+---
+14 July
+
+- 61 rotate list
+- 2487 remove nodes from linked list
+- 23 merge k sorted lists
+- stack - insert at bottom
+- 496 next greater element
+
+---
+15 July
+
+- 739 Daily Temperatures
+- 735 asteroid collision
+- binary generator
+
+---
+16 July
+
+- Queue
+- 622 design circular queue
+- implement queue using linked list and perform enque, deque
+- 232 implement queue using stacks
+- reverse an array using stack
+- 344 reverse string using stack
+- 933 number of recent calls
+
+---
+18 July
+
+- 50 pow(x,n)
+- 779 kth symbol in grammar
+- 799 champagne tower
+- 933 number of recent calls
+- sierpinski triangle
+
+---
+20 July
+
+- 3096 Minimum Levels to Gain More Points
+- gfg levels of game
+- 78 subsets
+<https://leetcode.com/problems/subsets/solutions/27281/a-general-approach-to-backtracking-quest-0ea5>
+- fibonacci number
+- reverse fibonacci
+
+---
+21 july
+
+- tower fo hanoi
+- 390 elimination game
+- letter case permutation
+
+---
+22 july
+
+- greedy technique: coin change, hiring process
+- gfg activity selection
+- 435 non overlapping intervals
+- the knapsack problem
+<https://www.geeksforgeeks.org/dsa/introduction-to-knapsack-problem-its-types-and-how-to-solve-them/>
+- gfg fractional knapsack
+<https://www.geeksforgeeks.org/dsa/fractional-knapsack-problem/>
+- 455 assign cookies
+- 321 create maximum number
+- 2611 mice and cheese
+
+---
+23 july
+
+- 402
+- 134
+
+---
+24 july
+
+- 79 word search
+- traversal in trees
+- preorder, postorder, inorder traversal
+- Level Order Traversal
+- lowest common ancestor
+
+---
+25 July
+
+- class test
+- 1483 kth ancestor of a tree node
+- balanced tree check
+
+---
+27 July
+
+- 94
+- 144
+- 145
+- 102
+- 236
+- 110
+- 543
+- 226
+- 105
+- 106
+- 889
+- 222
+- 1766
+- 427
+- 617
+- 101
+- 208
+- balanced tree check
+    if the differnce in heights of subtrees is <= 1 , then it is called balanced tree if difference in heights of subtrees is greater than 1, it is unbalanced tree.
+- left/right view of a binary
+
+---
+29 July
+
+- 3518 Smallest Palindromic Rearrangement II
+- 450 delete node in a bst
+- 230 kth smallest element in bst
+- 98 validate bst
+- 653 Two Sum IV - Input is a BST
+- gfg pair sum in BST
+- 222 count complete tree nodes
+
+---
+30 july
+
+- 958 completeness of a binary tree
+
+---
+31 july
+
+- array to heap
+- max heap, min heap
+
+---
+1 aug
+
+- 23 merge k sorted lists
+- 912 sort an array
+- graph data structures
+- 997 find the town judge
+
+---
+2 aug
+
+- 547
