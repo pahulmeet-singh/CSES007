@@ -1,0 +1,273 @@
+================================================================================
+                    ARRAY BASICS - QUICK REFERENCE CHEAT SHEET
+================================================================================
+
+================================================================================
+1. MAXIMUM ELEMENT
+================================================================================
+max_val = arr[0]
+for num in arr[1:]:
+    if num > max_val:
+        max_val = num
+return max_val
+
+TIME: O(n) | SPACE: O(1)
+EDGE: Empty array → return None
+
+================================================================================
+2. SECOND MAXIMUM ELEMENT (SINGLE-PASS)
+================================================================================
+max_val = float('-inf')
+second_max = float('-inf')
+
+for num in arr:
+    if num > max_val:
+        second_max = max_val
+        max_val = num
+    elif num > second_max and num != max_val:
+        second_max = num
+
+return second_max if second_max != float('-inf') else None
+
+TIME: O(n) | SPACE: O(1)
+EDGE: All same → None | < 2 elements → None
+
+================================================================================
+3. REMOVE DUPLICATES (SORTED ARRAY - IN PLACE)
+================================================================================
+write_idx = 0
+for read_idx in range(1, len(arr)):
+    if arr[read_idx] != arr[write_idx]:
+        write_idx += 1
+        arr[write_idx] = arr[read_idx]
+
+return write_idx + 1  # Number of unique elements
+
+TIME: O(n) | SPACE: O(1)
+EDGE: All duplicates → return 1
+
+================================================================================
+4. REMOVE DUPLICATES (UNSORTED - NEW ARRAY)
+================================================================================
+return list(dict.fromkeys(arr))  # Maintains order
+
+OR (if order doesn't matter):
+return list(set(arr))
+
+TIME: O(n) | SPACE: O(n)
+
+================================================================================
+5. REVERSE ARRAY (TWO-POINTER)
+================================================================================
+left = 0
+right = len(arr) - 1
+
+while left < right:
+    arr[left], arr[right] = arr[right], arr[left]
+    left += 1
+    right -= 1
+
+return arr
+
+TIME: O(n) | SPACE: O(1)
+EDGE: Empty → no change | Single element → no change
+
+================================================================================
+6. REVERSE PARTIAL ARRAY (start to end inclusive)
+================================================================================
+while start < end:
+    arr[start], arr[end] = arr[end], arr[start]
+    start += 1
+    end -= 1
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+7. ROTATE LEFT BY K (SLICING)
+================================================================================
+k = k % len(arr)  # IMPORTANT!
+return arr[k:] + arr[:k]
+
+TIME: O(n) | SPACE: O(n)
+EXAMPLE: [1,2,3,4,5], k=2 → [3,4,5,1,2]
+
+================================================================================
+8. ROTATE LEFT BY K (IN-PLACE WITH REVERSAL)
+================================================================================
+def reverse(start, end):
+    while start < end:
+        arr[start], arr[end] = arr[end], arr[start]
+        start += 1
+        end -= 1
+
+k = k % len(arr)
+reverse(0, k-1)           # Reverse first k
+reverse(k, len(arr)-1)    # Reverse rest
+reverse(0, len(arr)-1)    # Reverse all
+
+TIME: O(n) | SPACE: O(1)
+WALKTHROUGH: [1,2,3,4,5], k=2
+    → [2,1,3,4,5] (reverse [1,2])
+    → [2,1,5,4,3] (reverse [3,4,5])
+    → [3,4,5,1,2] (reverse all) ✓
+
+================================================================================
+9. ROTATE RIGHT BY K
+================================================================================
+k = k % len(arr)
+return arr[-k:] + arr[:-k] if k != 0 else arr
+
+TIME: O(n) | SPACE: O(n)
+EXAMPLE: [1,2,3,4,5], k=2 → [4,5,1,2,3]
+
+================================================================================
+10. SUM, AVERAGE, MAX (ALL IN ONE)
+================================================================================
+if len(arr) == 0:
+    return None, None, None
+
+total = 0
+max_val = arr[0]
+
+for num in arr:
+    total += num
+    if num > max_val:
+        max_val = num
+
+average = total / len(arr)
+return total, average, max_val
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+11. FIND MIN, MAX, AND DIFFERENCE
+================================================================================
+max_val = arr[0]
+min_val = arr[0]
+
+for num in arr[1:]:
+    if num > max_val:
+        max_val = num
+    if num < min_val:
+        min_val = num
+
+return max_val, min_val, (max_val - min_val)
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+COMMON PATTERNS TO REMEMBER
+================================================================================
+
+PATTERN 1: TWO-POINTER
+├─ Use for: reverse, remove duplicates, finding pairs
+├─ Start: left=0, right=len(arr)-1
+├─ Move: left++, right--
+└─ Stop: left >= right
+
+PATTERN 2: SINGLE-POINTER TRACKING MAX/MIN
+├─ Use for: finding max, min, second max
+├─ Start: max_val = arr[0]
+├─ Compare: each element with current max/min
+└─ Update: if condition met
+
+PATTERN 3: SLIDING WINDOW
+├─ Use for: rotating, finding subarrays
+├─ Keep track of start and end indices
+├─ Slide window across array
+└─ Process elements in window
+
+PATTERN 4: SPACE-TIME TRADE-OFF
+├─ New array: O(n) space, easier to code
+├─ In-place: O(1) space, trickier logic
+├─ Use: Check what problem asks for!
+└─ Remember: In-place = modify original
+
+================================================================================
+EDGE CASES CHECKLIST
+================================================================================
+☐ Empty array []
+☐ Single element [5]
+☐ Two elements [1, 2]
+☐ All same elements [5, 5, 5]
+☐ Negative numbers [-5, -2, -10]
+☐ Zero [0, 1, 2]
+☐ Large k in rotation (use k % n)
+☐ k = 0 in rotation (no change)
+
+================================================================================
+COMMON MISTAKES
+================================================================================
+
+❌ Forgetting k = k % len(arr) in rotations
+✅ ALWAYS normalize k
+
+❌ Off-by-one errors: range(len(arr)) vs range(len(arr)-1)
+✅ Write first 3 iterations by hand
+
+❌ Not handling empty arrays
+✅ Add if len(arr) == 0: check
+
+❌ Confusing arr[k:] + arr[:k] with arr[:k] + arr[k:]
+✅ LEFT rotation: arr[k:] + arr[:k]
+✅ RIGHT rotation: arr[-k:] + arr[:-k]
+
+❌ Not initializing max/min to arr[0]
+✅ Always start with first element
+
+❌ Using arr[0] for second_max (can be same as max!)
+✅ Use float('-inf') or handle carefully
+
+================================================================================
+PRACTICE QUICK CHECK
+================================================================================
+
+Problem: Find second max in [10, 5, 20, 8]
+Answer: 10
+Your Answer: ___
+
+Problem: Reverse [1,2,3] → ?
+Answer: [3,2,1]
+Your Answer: ___
+
+Problem: Rotate left [1,2,3,4,5] by 2
+Answer: [3,4,5,1,2]
+Your Answer: ___
+
+Problem: Remove duplicates from sorted [1,1,2,2,3]
+Answer: [1,2,3], count=3
+Your Answer: ___
+
+Problem: Rotate right [1,2,3,4,5] by 2
+Answer: [4,5,1,2,3]
+Your Answer: ___
+
+================================================================================
+DURING EXAM
+================================================================================
+
+1. READ problem carefully (2 min)
+   - What's the output? (number/array/count?)
+   - Is array sorted? (affects algorithm choice)
+   - In-place or new array?
+
+2. PLAN approach (3 min)
+   - Write pseudo-code
+   - Check time/space complexity
+   - Think about edge cases
+
+3. CODE cleanly (10 min)
+   - Use clear variable names
+   - Add comments
+   - Don't rush!
+
+4. TEST thoroughly (5 min)
+   - Use provided examples
+   - Test 1-2 edge cases
+   - Check loop bounds
+
+5. SUBMIT with confidence!
+
+================================================================================
+YOU'VE GOT THIS! 💪
+================================================================================

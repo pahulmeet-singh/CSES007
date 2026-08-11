@@ -1,0 +1,358 @@
+================================================================================
+              ARRAY BASICS - JAVA QUICK REFERENCE CHEAT SHEET
+================================================================================
+
+================================================================================
+ARRAY BASICS IN JAVA
+================================================================================
+
+DECLARATION:
+int[] arr = {1, 2, 3, 4, 5};
+int[] arr = new int[5];           // Size 5, all 0s
+String[] arr = new String[10];    // All null
+
+PROPERTIES:
+arr.length                         // Returns size (NOT .length())
+arr[0]                            // Access first element
+arr[arr.length - 1]               // Last element
+
+PRINTING:
+System.out.println(Arrays.toString(arr));  // "[1, 2, 3, 4, 5]"
+
+IMPORTS:
+import java.util.Arrays;
+import java.util.HashSet;
+
+================================================================================
+1. MAXIMUM ELEMENT
+================================================================================
+public static int findMax(int[] arr) {
+    if (arr.length == 0) return Integer.MIN_VALUE;
+    int max = arr[0];
+    for (int num : arr) {
+        if (num > max) max = num;
+    }
+    return max;
+}
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+2. SECOND MAXIMUM (SINGLE-PASS - BEST!)
+================================================================================
+public static int findSecondMax(int[] arr) {
+    if (arr.length < 2) return Integer.MIN_VALUE;
+    
+    int max = Integer.MIN_VALUE;
+    int secondMax = Integer.MIN_VALUE;
+    
+    for (int num : arr) {
+        if (num > max) {
+            secondMax = max;
+            max = num;
+        } else if (num > secondMax && num != max) {
+            secondMax = num;
+        }
+    }
+    return secondMax;
+}
+
+TIME: O(n) | SPACE: O(1)
+KEY: Handle duplicates! Skip if num == max
+
+================================================================================
+3. REMOVE DUPLICATES (SORTED ARRAY - IN PLACE)
+================================================================================
+public static int removeDuplicates(int[] arr) {
+    if (arr.length == 0) return 0;
+    
+    int write = 0;
+    for (int read = 1; read < arr.length; read++) {
+        if (arr[read] != arr[write]) {
+            write++;
+            arr[write] = arr[read];
+        }
+    }
+    return write + 1;
+}
+
+// Use only first COUNT elements: Arrays.copyOf(arr, count)
+
+TIME: O(n) | SPACE: O(1)
+NOTE: Only for SORTED arrays!
+
+================================================================================
+4. REVERSE ARRAY (TWO-POINTER)
+================================================================================
+public static void reverseArray(int[] arr) {
+    int left = 0, right = arr.length - 1;
+    
+    while (left < right) {
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+        left++;
+        right--;
+    }
+}
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+5. REVERSE PARTIAL (start to end inclusive)
+================================================================================
+public static void reversePartial(int[] arr, int start, int end) {
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+        start++;
+        end--;
+    }
+}
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+6. ROTATE LEFT BY K (NEW ARRAY)
+================================================================================
+public static int[] rotateLeft(int[] arr, int k) {
+    if (arr.length == 0) return arr;
+    
+    k = k % arr.length;  // CRITICAL!
+    int[] result = new int[arr.length];
+    
+    // Copy arr[k:] to start
+    for (int i = 0; i < arr.length - k; i++) {
+        result[i] = arr[k + i];
+    }
+    
+    // Copy arr[:k] to end
+    for (int i = 0; i < k; i++) {
+        result[arr.length - k + i] = arr[i];
+    }
+    
+    return result;
+}
+
+TIME: O(n) | SPACE: O(n)
+EXAMPLE: [1,2,3,4,5], k=2 → [3,4,5,1,2]
+
+================================================================================
+7. ROTATE LEFT (IN-PLACE WITH REVERSAL)
+================================================================================
+private static void rev(int[] arr, int s, int e) {
+    while (s < e) {
+        int t = arr[s]; arr[s] = arr[e]; arr[e] = t;
+        s++; e--;
+    }
+}
+
+public static void rotateLeftInPlace(int[] arr, int k) {
+    if (arr.length == 0) return;
+    k = k % arr.length;
+    
+    rev(arr, 0, k-1);              // Reverse first k
+    rev(arr, k, arr.length-1);     // Reverse rest
+    rev(arr, 0, arr.length-1);     // Reverse all
+}
+
+TIME: O(n) | SPACE: O(1)
+WALKTHROUGH [1,2,3,4,5], k=2:
+→ [2,1,3,4,5] (reverse [1,2])
+→ [2,1,5,4,3] (reverse [3,4,5])
+→ [3,4,5,1,2] (reverse all) ✓
+
+================================================================================
+8. ROTATE RIGHT BY K
+================================================================================
+public static int[] rotateRight(int[] arr, int k) {
+    if (arr.length == 0) return arr;
+    k = k % arr.length;
+    
+    int[] result = new int[arr.length];
+    for (int i = 0; i < arr.length; i++) {
+        result[(i + k) % arr.length] = arr[i];
+    }
+    return result;
+}
+
+TIME: O(n) | SPACE: O(n)
+EXAMPLE: [1,2,3,4,5], k=2 → [4,5,1,2,3]
+
+================================================================================
+9. SUM, AVERAGE, MAX (ONE PASS)
+================================================================================
+public static void sumAvgMax(int[] arr) {
+    if (arr.length == 0) return;
+    
+    int sum = 0;
+    int max = arr[0];
+    
+    for (int num : arr) {
+        sum += num;
+        if (num > max) max = num;
+    }
+    
+    double avg = (double) sum / arr.length;  // CAST TO DOUBLE!
+    System.out.printf("Sum: %d, Avg: %.2f, Max: %d%n", sum, avg, max);
+}
+
+TIME: O(n) | SPACE: O(1)
+
+================================================================================
+10. COUNT DUPLICATES
+================================================================================
+public static int countDuplicates(int[] arr) {
+    HashSet<Integer> seen = new HashSet<>();
+    int count = 0;
+    
+    for (int num : arr) {
+        if (seen.contains(num)) {
+            count++;
+        } else {
+            seen.add(num);
+        }
+    }
+    return count;
+}
+
+TIME: O(n) | SPACE: O(n)
+
+================================================================================
+JAVA-SPECIFIC GOTCHAS
+================================================================================
+
+❌ arr.length()                   ✅ arr.length
+❌ sum / len (integer division)   ✅ (double) sum / len
+❌ int max;                       ✅ int max = Integer.MIN_VALUE;
+❌ Forgetting k = k % arr.length ✅ Always normalize k
+
+================================================================================
+LOOPS IN JAVA
+================================================================================
+
+FOR LOOP (Index-based):
+for (int i = 0; i < arr.length; i++) {
+    System.out.println(arr[i]);
+}
+
+ENHANCED FOR LOOP (Value-based):
+for (int num : arr) {
+    System.out.println(num);
+}
+
+BACKWARD LOOP:
+for (int i = arr.length - 1; i >= 0; i--) {
+    System.out.println(arr[i]);
+}
+
+WHILE LOOP (Two-pointer):
+int left = 0, right = arr.length - 1;
+while (left < right) {
+    // Do something
+    left++;
+    right--;
+}
+
+================================================================================
+COMMON OPERATIONS
+================================================================================
+
+SWAP:
+int temp = arr[left];
+arr[left] = arr[right];
+arr[right] = temp;
+
+COPY ARRAY:
+int[] copy = Arrays.copyOf(arr, arr.length);
+int[] partial = Arrays.copyOf(arr, count);  // First count elements
+
+SORT ARRAY:
+Arrays.sort(arr);  // Ascending order
+
+SEARCH:
+int index = Arrays.binarySearch(arr, value);  // Only works on sorted array
+
+FILL ARRAY:
+Arrays.fill(arr, 0);  // Fill all with 0
+Arrays.fill(arr, 2, 5, 0);  // Fill indices 2-4 with 0
+
+================================================================================
+INTEGER CONSTANTS
+================================================================================
+Integer.MIN_VALUE   = -2147483648
+Integer.MAX_VALUE   = 2147483647
+Integer.SIZE        = 32
+
+================================================================================
+EDGE CASES CHECKLIST
+================================================================================
+☐ Empty array: arr.length == 0
+☐ Single element: arr.length == 1
+☐ Two elements: arr.length == 2
+☐ All same: [5, 5, 5, 5]
+☐ Negative numbers: [-5, -2, -10]
+☐ Large k in rotation: k > arr.length
+☐ k = 0 in rotation: No rotation needed
+
+================================================================================
+DURING EXAM
+================================================================================
+
+1. READ problem carefully (1-2 min)
+   - Output type? (int, array, void?)
+   - In-place or new array?
+   - Sorted or unsorted?
+
+2. PLAN approach (2-3 min)
+   - Write pseudo-code
+   - Time/Space complexity
+   - Edge cases
+
+3. CODE cleanly (10-15 min)
+   - Use clear variable names
+   - Add comments
+   - Handle edge cases
+
+4. TEST (5 min)
+   - Use given examples
+   - Test 1-2 edge cases
+   - Verify loop bounds
+
+5. DOUBLE-CHECK
+   - .length (not .length())
+   - (double) for division
+   - Integer.MIN_VALUE for errors
+   - k = k % len for rotations
+
+================================================================================
+QUICK CHEAT TEMPLATE
+================================================================================
+
+public class Solution {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
+        
+        // Your solution here
+    }
+    
+    public static int solve(int[] arr) {
+        // Check edge case
+        if (arr.length == 0) return Integer.MIN_VALUE;
+        
+        // Initialize variables
+        int result = arr[0];
+        
+        // Loop through array
+        for (int num : arr) {
+            // Logic here
+        }
+        
+        return result;
+    }
+}
+
+================================================================================
+YOU'VE GOT THIS! 💪
+================================================================================
