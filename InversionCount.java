@@ -8,7 +8,7 @@ public class InversionCount {
     }
 
     public static int countInversions(int[] arr, int n) {
-        int[] temp = new int[n];
+        int[] temp = new int[n]; 
         return mergeSortAndCount(arr, temp, 0, n - 1);
     }
 

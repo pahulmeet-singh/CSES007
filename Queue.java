@@ -11,7 +11,7 @@ public class Queue {
     private Node front, rear;
     private int size;
 
-    public QueueusingLL() {
+    public Queue() {
         front = rear = null;
         size = 0;
     }
@@ -58,7 +58,7 @@ public class Queue {
     }
 
     public static void main(String[] args) {
-        QueueusingLL queue = new QueueusingLL();
+        Queue queue = new Queue();
         
         queue.enqueue(10);
         queue.enqueue(20);

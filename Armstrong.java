@@ -7,7 +7,7 @@ public class Armstrong {
             System.out.println(number + " is not an Armstrong number.");
         }
     }
-
+ 
     public static boolean isArmstrong(int num) {
         int originalNum = num;
         int sum = 0;
@@ -19,9 +19,9 @@ public class Armstrong {
             num /= 10;
         }
 
-        return sum == originalNum;
+        return sum == originalNum; 
     }
 }
 // 2,90,62,026
 // https://docs.google.com/document/d/1zMBAQkaVJjgdSJ-AjlNM_IVmokbgHDzwXHZDKCKJQKM
-//i am a day scholar. if i wish to commute to the uni on my bicycle. can i park it in the 34 block parking. or do i need to file for a rfid sticker/pass for a bicycle as well? what are the charges for that
+

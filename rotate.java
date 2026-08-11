@@ -25,17 +25,19 @@ void reverse(int[] nums, int start, int end) {
         end--;
     }
 }
+
 void leftRotate(int[] nums, int k) {
+    int n=nums.length;
     k = k % nums.length; // Handle cases where k is greater than array length
     reverse(nums, 0, k - 1);
-    reverse(nums, k, nums.length - 1);
-    reverse(nums, 0, nums.length - 1);
+    reverse(nums, k, n - 1);
+    reverse(nums, 0, n - 1);
 }
 
 void rightRotate(int[] nums, int k) {
+    int n=nums.length;
     k = k % nums.length; // Handle cases where k is greater than array length
-    reverse(nums, 0, nums.length - 1);
+    reverse(nums, 0, n - 1);
     reverse(nums, 0, k - 1);
-    reverse(nums, k, nums.length - 1);
+    reverse(nums, k, n - 1);
 }
-

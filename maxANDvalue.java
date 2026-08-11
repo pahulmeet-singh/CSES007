@@ -1,7 +1,7 @@
 //fins the maximum AND value of two numbers in an array and also finds the two numbers that give the maximum AND value
 public class maxANDvalue {
     public static void main(String[] args) {
-        int[] arr = {4, 8, 12, 16, 20};
+        int[] arr = {4, 8, 11,12, 16, 32,64};
         int maxAND = findMaxAND(arr);
         System.out.println("Maximum AND value: " + maxAND);
     }

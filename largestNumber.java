@@ -1,7 +1,7 @@
 // find out the largest possible digit that can be made using array elements
 //     > given array:[3,30,34,5,9]
 //     largest possible number: 9534330
-public class largestNumber {
+public class LargestNumber {
     public static void main(String[] args) {
         int[] nums = {3, 30, 34, 5, 9};
         String result = largestNumber(nums);
